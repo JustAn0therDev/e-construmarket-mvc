@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Produtos</h1>
+    <section id="section-produtos">
+        <div>
+            <div id="div-produtos">
+                <input type="text" placeholder="Insira o nome do produto" id="input-nome-produto" autocomplete="off" />
+            </div>
+        </div>
+        <div id="div-resultado-pesquisa-produtos">
+            <table class="table table-hover table-bordered table-striped" id="table-produtos">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Preço</th>
+                        <th scope="col">Nome Marca</th>
+                        <th scope="col">Código Marca</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td colspan="4">Não há registros a serem exibidos. Por favor, efetue uma pesquisa</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
