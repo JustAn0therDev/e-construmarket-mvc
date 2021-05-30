@@ -1,11 +1,10 @@
 # e-construmarket-mvc
 Projeto de front-end | e-construmarket
 
-# Executando o projeto
-
-Para executar o projeto, basta clicar em "IIS Express" caso esteja usando a IDE "Visual Studio".
-
-Para executar a partir do terminal, vá até o diretório principal da aplicação e execute o comando `dotnet run`.
+# Para testar o projeto:
+1. Clone o repositório em um diretório local;
+2. Mude o diretório atual até chegar no diretório do projeto (onde está o arquivo `.csproj`); e
+3. Execute o comando `dotnet run` (ou clique em IIS Express se estiver usando o Visual Studio).
 
 # Informações importantes
 
