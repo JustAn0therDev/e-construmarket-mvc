@@ -4,15 +4,14 @@
         cache: true,
         async: true,
         success: function (result) {
+            exibeOuEscondeMensagemDeErro();
             populaProdutoTable(JSON.parse(result));
         },
         error: function (err) {
-            console.error(err);
+            exibeOuEscondeMensagemDeErro(err);
         }
     });
 
-
-    // TODO: a pesquisa deve encontrar um produto de cada marca e ordenar os produtos do menor ao maior preco
     $("#input-nome-produto").keyup(function () {
 
         function mostrarApenasMensagemDaTabela() {
@@ -66,6 +65,16 @@ function populaProdutoTable(produtosArray) {
 
     produtosArray.forEach(produto => {
         const valorFormatadoEmReais = Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(produto.preco);
-        tableBody.append(`<tr style="display:none"><td>${produto.nome}</td><td>${valorFormatadoEmReais}</td><td>${produto.marca.nome}</td><td>${produto.marca.codigoMarca}</td></tr>`);
+        tableBody.append(`<tr style="display:none;"><td>${produto.nome}</td><td>${valorFormatadoEmReais}</td><td>${produto.marca.nome}</td><td>${produto.marca.codigoMarca}</td></tr>`);
     });
+}
+
+function exibeOuEscondeMensagemDeErro(err) {
+    if (err) {
+        $("#div-mensagem-erro").show();
+        $("#div-mensagem-erro").text(`Ocorreu um erro durante o resgate dos dados. Erro: ${err}`);
+    } else {
+        $("#div-mensagem-erro").hide();
+        $("#div-messagem-erro").text("");
+    }
 }
