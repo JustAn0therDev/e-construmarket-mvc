@@ -5,7 +5,12 @@
         async: true,
         success: function (result) {
             exibeOuEscondeMensagemDeErro();
-            populaProdutoTable(JSON.parse(result));
+            const retornoEmJSON = typeof result === "string";
+            if (retornoEmJSON) {
+                populaProdutoTable(JSON.parse(result));
+            } else {
+                populaProdutoTable(result);
+            }
         },
         error: function (err) {
             exibeOuEscondeMensagemDeErro(err);
@@ -30,8 +35,10 @@
 
         linhasDaTabela.each(function () {
             const linhaAtual = $(this);
-            
-            if (linhaAtual.find("td:first").text().toUpperCase().includes(search.toUpperCase())) {
+            const nomeDoProdutoEmCaixaAlta = linhaAtual.find("td:first").text().toUpperCase();
+            const conteudoDaPesquisaEmCaixaAlta = search.toUpperCase();
+
+            if (nomeDoProdutoEmCaixaAlta.includes(conteudoDaPesquisaEmCaixaAlta)) {
                 linhaAtual.show();
                 contagemDeLinhasExibidas++;
             } else {
@@ -39,7 +46,9 @@
             }
         });
 
-        if (contagemDeLinhasExibidas === 0) {
+        const nenhumResultadoFoiEncontrado = contagemDeLinhasExibidas === 0;
+
+        if (nenhumResultadoFoiEncontrado) {
             mostrarApenasMensagemDaTabela();
         }
     });

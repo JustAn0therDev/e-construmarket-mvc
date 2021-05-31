@@ -31,7 +31,7 @@ namespace e_construmarket_mvc.Controllers
 
         /// <summary>
         /// Filtra os primeiros dez produtos mais baratos de cada marca. Método usado para não fazer uso de LINQ partes do código mais chamadas,
-        /// onde pode haver uma degradação de performance.
+        /// onde pode haver degradação de performance.
         /// </summary>
         /// <param name="produtos">Lista de produtos</param>
         /// <returns>Lista filtrada com os primeiros dez produtos de marcas distintas.</returns>
@@ -46,6 +46,11 @@ namespace e_construmarket_mvc.Controllers
             return listaDeProdutosFiltrada;
         }
 
+        /// <summary>
+        /// Filtra apenas os teclados de marcas distintas na lista de produtos.
+        /// </summary>
+        /// <param name="produtos">Lista de produtos</param>
+        /// <returns>Lista de produtos que contenham "teclado" em seu nome</returns>
         private List<Produto> FiltraTeclados(List<Produto> produtos)
         {
             var tecladosFiltrados = new List<Produto>();
@@ -55,7 +60,8 @@ namespace e_construmarket_mvc.Controllers
 
             foreach (var produto in apenasTecladosOrdenadosPorPreco)
             {
-                if (!marcasDistintas.Contains(produto.Marca.Nome)) {
+                if (!marcasDistintas.Contains(produto.Marca.Nome))
+                {
                     tecladosFiltrados.Add(produto);
                     marcasDistintas.Add(produto.Marca.Nome);
                 }
@@ -64,6 +70,11 @@ namespace e_construmarket_mvc.Controllers
             return tecladosFiltrados.Take(10).ToList();
         }
 
+        /// <summary>
+        /// Filtra apenas os mouses de marcas distintas na lista de produtos.
+        /// </summary>
+        /// <param name="produtos">Lista de produtos</param>
+        /// <returns>Lista de produtos que contenham "mouse" em seu nome</returns>
         private List<Produto> FiltraMouses(List<Produto> produtos)
         {
             var mousesFiltrados = new List<Produto>();
@@ -73,7 +84,8 @@ namespace e_construmarket_mvc.Controllers
 
             foreach (var produto in apenasMousesOrdenadosPorPreco)
             {
-                if (!marcasDistintas.Contains(produto.Marca.Nome)) {
+                if (!marcasDistintas.Contains(produto.Marca.Nome))
+                {
                     mousesFiltrados.Add(produto);
                     marcasDistintas.Add(produto.Marca.Nome);
                 }
@@ -82,6 +94,11 @@ namespace e_construmarket_mvc.Controllers
             return mousesFiltrados.Take(10).ToList();
         }
 
+        /// <summary>
+        /// Filtra apenas os fones de ouvido de marcas distintas na lista de produtos.
+        /// </summary>
+        /// <param name="produtos">Lista de produtos</param>
+        /// <returns>Lista de produtos que contenham "fones de ouvido" em seu nome</returns>
         private List<Produto> FiltraFones(List<Produto> produtos)
         {
             var fonesFiltrados = new List<Produto>();
@@ -91,7 +108,8 @@ namespace e_construmarket_mvc.Controllers
 
             foreach (var produto in apenasFonesOrdenadosPorPreco)
             {
-                if (!marcasDistintas.Contains(produto.Marca.Nome)) {
+                if (!marcasDistintas.Contains(produto.Marca.Nome))
+                {
                     fonesFiltrados.Add(produto);
                     marcasDistintas.Add(produto.Marca.Nome);
                 }
